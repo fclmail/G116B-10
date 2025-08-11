@@ -1,0 +1,92 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>DODO Flash Loan Arbitrage</title>  
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>  
+  <style>  
+    body { background-color: #0a0; color: white; font-family: sans-serif; padding: 20px; }  
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }  
+    th, td { padding: 8px 12px; border: 1px solid #444; text-align: center; }  
+    .profitable { background-color: #00ff00; color: black; font-weight: bold; }  
+    #log { max-height: 200px; overflow-y: auto; border: 1px solid #444; margin-top: 10px; padding: 10px; background: #111; }  
+    button { padding: 8px 16px; margin: 5px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; }  
+    button:hover { background: #555; }  
+    .control-group { margin: 10px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 15px; }  
+    .control-group label { display: flex; align-items: center; gap: 5px; }  
+    .profit-display { font-size: 1.2em; font-weight: bold; margin: 10px 0; padding: 8px; background: #333; border-radius: 4px; }  
+  </style>  
+</head>  
+<body>  
+  <h1>DODO Flash Loan Arbitrage</h1>  
+  <p><strong>Wallet:</strong> <span id="wallet"></span></p>  
+  <p><strong>Wallet USDC Balance:</strong> <span id="walletBalance">-</span></p>  
+  <p><strong>Contract USDC Balance:</strong> <span id="contractBalance">-</span></p>  
+  <div class="profit-display">  
+    <strong>Accumulated Profit:</strong> <span id="accumulatedProfit">0.00</span> USDC  
+  </div>  
+  <div class="control-group">  
+    <button id="connectWallet">Connect Wallet</button>  
+    <button id="scanNow">Scan Now</button>  
+    <button id="withdrawUSDC">Withdraw USDC</button>  
+    <button id="startScan">Start</button>  
+    <button id="stopScan">Stop</button>  
+    <button id="pauseScan">Pause</button>  
+  </div>  
+  <div class="control-group">  
+    <label><input type="checkbox" id="autoTradeToggle"> Auto Trade</label>  
+    <label><input type="checkbox" id="backgroundTradeToggle"> Auto Trade in Background</label>  
+    <label><input type="checkbox" id="accumulateToggle"> Let profits accumulate in contract</label>  
+    <label><input type="checkbox" id="positiveBalanceToggle" checked> Only trade if contract balance increases</label>  
+  </div>  
+  <div class="control-group">  
+    <label>Min Profit %: <input type="number" id="minProfitPct" value="0.2" step="0.1" min="0.1">%</label>  
+    <label>Trade Amount: <input type="number" id="tradeAmount" value="10" min="1"> USDC</label>  
+    <label>Batch Trades (1-100): <input type="number" id="batchCount" value="1" min="1" max="100" step="1"></label>  
+    <label>Slippage %: <input type="number" id="slippagePct" value="0" step="0.1" min="0">%</label>  
+  </div>  
+  <table id="resultTable">  
+    <thead>  
+      <tr>  
+        <th>Token</th>  
+        <th>Buy Router</th>  
+        <th>Sell Router</th>  
+        <th>Buy Price</th>  
+        <th>Sell Price</th>  
+        <th>Profit $</th>  
+        <th>Profit %</th>  
+        <th>Status</th>  
+        <th>Action</th>  
+      </tr>  
+    </thead>  
+    <tbody id="results">  
+      <!-- Results will be populated here dynamically -->  
+    </tbody>  
+  </table>  
+  <div id="log"></div>  
+  
+  <button id="exportCSV">Export Transactions</button>  
+  
+  <script>  
+    const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE'; // Replace with your contract address  
+    const contractABI = []; // Add your contract ABI here  
+    const tokens = {  
+      USDC: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",  
+      WBTC: "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",  
+      RNDR: "0x6C3c7886B43D005dB8c28a09e8038B87E36Cf26c",  
+      LDO: "0xBb0bB78BEEEA5cF201b8f2651F48830E64CE45a4",  
+      BETA: "0x0AfAAbCAd8815B32bF2B64e0Dc5E1df2f1454CDE"  
+    };  
+
+    const routers = {  
+      QuickSwap: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",  
+      SushiSwap: "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506",  
+      Dfyn: "0xA8b607Aa09B6A2641cF6F90f643E76d3f6e6Ff73",  
+      ApeSwap: "0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607"  
+    };  
+
+    // Your existing JavaScript code goes here  
+  </script>  
+</body>  
+</html>
