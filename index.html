@@ -70,7 +70,204 @@
   
   <script>  
     const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE'; // Replace with your contract address  
-    const contractABI = []; // Add your contract ABI here  
+    const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "buyRouter",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "sellRouter",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amountIn",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "flashLoanProvider",
+				"type": "string"
+			}
+		],
+		"name": "executeArbitrage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "asset",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "premium",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes",
+				"name": "params",
+				"type": "bytes"
+			}
+		],
+		"name": "executeOperation",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_aavePool",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_usdc",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_aaveProvider",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "updateOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdrawProfits",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "withdrawToken",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "AAVE_ADDRESS_PROVIDER",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "AAVE_POOL",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getContractBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "USDC",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]; // Add your contract ABI here  
     const tokens = {  
       USDC: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",  
       WBTC: "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",  
